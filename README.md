@@ -26,7 +26,7 @@ Die App nutzt die **Pokémon TCG API**, um aktuelle Kartendaten bereitzustellen 
 - **Sammlung verwalten**: Füge, bearbeite und filtere deine Pokémon-Karten
 - **Tauschbörse**: Tausche Karten mit anderen Nutzern
 - **Wertübersicht**: Sieh den aktuellen Marktwert deiner Karten
-- **Ziele setzen**: Verfolge deine Sammlungsziele und Fortschritte
+- **Karten Scannen**: Katen Scannen und speichern 
 
   ## 📸 **Screenshots**
 *(Hier kannst du Screenshots deiner App einfügen.)*
