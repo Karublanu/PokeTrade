@@ -13,29 +13,32 @@ Die App nutzt die **Pokémon TCG API**, um aktuelle Kartendaten bereitzustellen 
 ## 📌 **Inhalt**
 - [✨ Features](#-features)
 - [📸 Screenshots](#-screenshots)
-- [🛠 Technologien & Architecture](#-technologien-architecture)
+- [🛠 Technologien & Architecture](#-technologien-und-architecture)
 - [📚 Verwendete Bibliotheken](#-verwendete-bibliotheken)
-- [💡 Mitwirken](#-mitwirken)
 - [📥 Installation](#-installation)
 - [📩 Kontakt](#-kontakt)
 
 ---
 
-## Features
+## ✨ Features
 
-- **Sammlung verwalten**: Füge, bearbeite und filtere deine Pokémon-Karten
-- **Tauschbörse**: Tausche Karten mit anderen Nutzern
-- **Wertübersicht**: Sieh den aktuellen Marktwert deiner Karten
-- **Karten Scannen**: Katen Scannen und speichern 
-
+- **Sammlung verwalten": → Füge, bearbeite und filtere deine Pokémon-Karten**
+- **Tauschbörse": → Tausche Karten mit anderen Nutzern**
+- **Wertübersicht": → Sieh den aktuellen Marktwert deiner Karten**
+- **"Katen Scannen" → Karten scannen und speichern**
+  
   ## 📸 **Screenshots**
 *(Hier kannst du Screenshots deiner App einfügen.)*
 
 ---
 
-## Technologien & Architecture
-- SwiftUI
-- MVVM
+## 🛠 Technologien und Architecture
+- [SwiftUI](https://developer.apple.com/documentation/swiftui)
+- [MVVM](https://learn.microsoft.com/de-de/windows/uwp/data-binding/data-binding-and-mvvm)
+
+## 📚 Verwendete Bibliotheken
+- [Firebase Firestore](https://firebase.google.com/docs/firestore?hl=de)
+- [Firebase Authentication](https://firebase.google.com/docs/auth?hl=de)
 
   ## 📥 **Installation**
 1. Klone das Repository:
@@ -45,3 +48,6 @@ Die App nutzt die **Pokémon TCG API**, um aktuelle Kartendaten bereitzustellen 
 - Stelle sicher, dass du die neueste Version von Xcode verwendest.
 - Wähle ein physisches Gerät oder den iOS-Simulator in Xcode.
 - Klicke auf "Run" (⌘R), um die App auszuführen.
+
+  ## 📩 Kontakt
+  - [Burak Uenal](https://github.com/Karublanu/PokeTrade)
