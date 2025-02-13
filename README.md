@@ -11,12 +11,12 @@ Die App nutzt die **Pokémon TCG API**, um aktuelle Kartendaten bereitzustellen 
 ---
 
 ## 📌 **Inhalt**
-- [📸 Screenshots](#-screenshots)
-- [📥 Installation](#-installation)
 - [✨ Features](#-features)
-- [🛠 Technologien & Frameworks](#-technologien--frameworks)
+- [📸 Screenshots](#-screenshots)
+- [🛠 Technologien & Architecture](#-technologien-architecture)
 - [📚 Verwendete Bibliotheken](#-verwendete-bibliotheken)
 - [💡 Mitwirken](#-mitwirken)
+- [📥 Installation](#-installation)
 - [📩 Kontakt](#-kontakt)
 
 ---
@@ -32,6 +32,10 @@ Die App nutzt die **Pokémon TCG API**, um aktuelle Kartendaten bereitzustellen 
 *(Hier kannst du Screenshots deiner App einfügen.)*
 
 ---
+
+## Technologien & Architecture
+- SwiftUI
+- MVVM
 
   ## 📥 **Installation**
 1. Klone das Repository:
