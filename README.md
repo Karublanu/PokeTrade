@@ -50,4 +50,6 @@ Die App nutzt die **Pokémon TCG API**, um aktuelle Kartendaten bereitzustellen 
 - Klicke auf "Run" (⌘R), um die App auszuführen.
 
   ## 📩 Kontakt
-  - [Burak Uenal](https://github.com/Karublanu/PokeTrade)
+  **Mehmet Burak Uenal**
+  - [GitHub Profil](https://github.com/Karublanu)
+  - [GitHub Repository](https://github.com/Karublanu/PokeTrade)
