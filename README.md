@@ -23,10 +23,10 @@ Die App nutzt die **Pokémon TCG API**, um aktuelle Kartendaten bereitzustellen 
 
 ## ✨ Features
 
-- **Sammlung verwalten": → Füge und filtere deine Pokémon-Karten**
-- **Tauschbörse": → Tausche Karten mit anderen Nutzern**
-- **Wertübersicht": → Sieh den aktuellen Marktwert deiner Karten**
-- **"Katen Scannen" → Karten scannen und speichern**
+- **Sammlung verwalten → Füge und filtere deine Pokémon-Karten**
+- **Tauschbörse → Tausche Karten mit anderen Nutzern**
+- **Wertübersicht → Sieh den aktuellen Marktwert deiner Karten**
+- **"Katen Scannen → Karten scannen und speichern**
   
   ## 📸 **Screenshots**
 *(Hier kannst du Screenshots deiner App einfügen.)*
@@ -36,10 +36,9 @@ Die App nutzt die **Pokémon TCG API**, um aktuelle Kartendaten bereitzustellen 
 ## 🛠 Technologien und Architecture
 - [SwiftUI](https://developer.apple.com/documentation/swiftui)
 - [MVVM](https://learn.microsoft.com/de-de/windows/uwp/data-binding/data-binding-and-mvvm)
-
-## 📚 Verwendete Bibliotheken
 - [Firebase Firestore](https://firebase.google.com/docs/firestore?hl=de)
 - [Firebase Authentication](https://firebase.google.com/docs/auth?hl=de)
+
 
   ## 📥 **Installation**
 1. Klone das Repository:
