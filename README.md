@@ -7,7 +7,7 @@
 
 **PokeTrade** ist eine in SwiftUI entwickelte iOS-App, die Pokémon-Karten-Sammlern eine einfache Möglichkeit bietet, ihre Karten zu verwalten, zu tauschen und deren Marktwert im Blick zu behalten.
 
-Die App nutzt die **Pokémon TCG API**, um aktuelle Kartendaten bereitzustellen und bietet eine intuitive Benutzeroberfläche für ein optimales Sammel- und Tauscherlebnis.
+Die App nutzt die [**Pokémon TCG API**](https://dev.pokemontcg.io/dashboard), um aktuelle Kartendaten bereitzustellen und bietet eine intuitive Benutzeroberfläche für ein optimales Sammel- und Tauscherlebnis.
 
 ---
 
