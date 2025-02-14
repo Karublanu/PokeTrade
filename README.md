@@ -1,7 +1,8 @@
 # PokeTrade 
 
 
-![Bildschirmfoto 2025-02-11 um 14 41 25](https://github.com/user-attachments/assets/6e74f005-aa9c-495b-9a52-1b58788a1fbb)
+<img src="https://github.com/user-attachments/assets/6e74f005-aa9c-495b-9a52-1b58788a1fbb" width="100%" />
+
 
 
 **PokeTrade** ist eine in SwiftUI entwickelte iOS-App, die Pokémon-Karten-Sammlern eine einfache Möglichkeit bietet, ihre Karten zu verwalten, zu tauschen und deren Marktwert im Blick zu behalten.
