@@ -11,7 +11,7 @@ struct PokeCardSearchView: View {
     @EnvironmentObject var viewModel: PokeCardViewModel
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 TextField("Suche nach einer Karte", text: $viewModel.searchText)
                     .padding()

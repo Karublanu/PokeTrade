@@ -20,6 +20,7 @@ struct Home: View {
 //                        Text("Email: \(fireUser.email ?? "" )")
                         Text("Hallo \(fireUser.name)")
                     }
+
                 }
                 Section("Current value") {
 
