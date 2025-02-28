@@ -6,6 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		670C30E52D64780F00660C8B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 670C30E42D64780F00660C8B /* FirebaseAuth */; };
+		670C30E72D64781400660C8B /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 670C30E62D64781400660C8B /* FirebaseDatabase */; };
+		670C30E92D64781900660C8B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 670C30E82D64781900660C8B /* FirebaseFirestore */; };
+		670C30EB2D64782A00660C8B /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 670C30EA2D64782A00660C8B /* FirebaseAnalyticsOnDeviceConversion */; };
+		670C30ED2D64783400660C8B /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 670C30EC2D64783400660C8B /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		670C30EF2D64784600660C8B /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 670C30EE2D64784600660C8B /* FirebaseAppCheck */; };
+		670C30F12D64784B00660C8B /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 670C30F02D64784B00660C8B /* FirebaseAppDistribution-Beta */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		670C2DB52D5B7ED300660C8B /* PokeTrade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeTrade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +33,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				670C30F12D64784B00660C8B /* FirebaseAppDistribution-Beta in Frameworks */,
+				670C30E72D64781400660C8B /* FirebaseDatabase in Frameworks */,
+				670C30ED2D64783400660C8B /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				670C30E52D64780F00660C8B /* FirebaseAuth in Frameworks */,
+				670C30E92D64781900660C8B /* FirebaseFirestore in Frameworks */,
+				670C30EF2D64784600660C8B /* FirebaseAppCheck in Frameworks */,
+				670C30EB2D64782A00660C8B /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +83,13 @@
 			);
 			name = PokeTrade;
 			packageProductDependencies = (
+				670C30E42D64780F00660C8B /* FirebaseAuth */,
+				670C30E62D64781400660C8B /* FirebaseDatabase */,
+				670C30E82D64781900660C8B /* FirebaseFirestore */,
+				670C30EA2D64782A00660C8B /* FirebaseAnalyticsOnDeviceConversion */,
+				670C30EC2D64783400660C8B /* FirebaseAnalyticsWithoutAdIdSupport */,
+				670C30EE2D64784600660C8B /* FirebaseAppCheck */,
+				670C30F02D64784B00660C8B /* FirebaseAppDistribution-Beta */,
 			);
 			productName = PokeTrade;
 			productReference = 670C2DB52D5B7ED300660C8B /* PokeTrade.app */;
@@ -95,6 +119,9 @@
 			);
 			mainGroup = 670C2DAC2D5B7ED300660C8B;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				670C30E22D6477D900660C8B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 670C2DB62D5B7ED300660C8B /* Products */;
 			projectDirPath = "";
@@ -281,6 +308,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -288,9 +316,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.Develop.PokeTrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -310,6 +342,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -317,9 +350,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.Develop.PokeTrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -345,6 +382,55 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		670C30E22D6477D900660C8B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		670C30E42D64780F00660C8B /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 670C30E22D6477D900660C8B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		670C30E62D64781400660C8B /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 670C30E22D6477D900660C8B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		670C30E82D64781900660C8B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 670C30E22D6477D900660C8B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		670C30EA2D64782A00660C8B /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 670C30E22D6477D900660C8B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		670C30EC2D64783400660C8B /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 670C30E22D6477D900660C8B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		670C30EE2D64784600660C8B /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 670C30E22D6477D900660C8B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		670C30F02D64784B00660C8B /* FirebaseAppDistribution-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 670C30E22D6477D900660C8B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAppDistribution-Beta";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 670C2DAD2D5B7ED300660C8B /* Project object */;
 }

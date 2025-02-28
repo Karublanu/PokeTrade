@@ -1,0 +1,53 @@
+//
+//  PokeCardRepository.swift
+//  PokeTrade
+//
+//  Created by Mehmet Burak Ünal on 25.02.25.
+//
+
+import SwiftUI
+import Foundation
+
+class PokeCardRepository {
+    func getPokeCards() async throws -> [PokeCard] {
+        let urlString = "https://api.pokemontcg.io/v2/cards"
+
+        guard let url = URL(string: urlString) else {
+            throw HTTPError.invalidURL
+        }
+
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let decodedData = try JSONDecoder().decode(PokeCardData.self, from: data)
+
+        return decodedData.data
+    }
+
+    func searchPokeCards(searchQuery: String?) async throws -> [PokeCard] {
+        var urlString = "https://api.pokemontcg.io/v2/cards"
+
+        // Wenn ein Suchbegriff existiert, wird die URL angepasst
+        if let query = searchQuery, !query.isEmpty {
+            let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? query
+            urlString += "?q=name:\(encodedQuery)"
+        }
+
+        guard let url = URL(string: urlString) else {
+            throw HTTPError.invalidURL
+        }
+
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let decodedResponse = try JSONDecoder().decode(PokeCardData.self, from: data)
+
+        return decodedResponse.data
+    }}
+
+enum HTTPError: Error {
+    case invalidURL, fetchFailed
+
+    var message: String {
+        switch self {
+        case .invalidURL: "Die URL ist ungültig"
+        case .fetchFailed: "Laden ist fehlgeschlagen"
+        }
+    }
+}

@@ -6,12 +6,26 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct PokeTradeApp: App {
+
+    @StateObject private var userViewModel = UserViewModel()
+
+    init() {
+        FirebaseApp.configure()
+
+    }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if userViewModel.isUserLoggedIn {
+                NaviView()
+                    .environmentObject(userViewModel)
+            } else {
+                Signin()
+                    .environmentObject(userViewModel)
+            }
         }
     }
 }
