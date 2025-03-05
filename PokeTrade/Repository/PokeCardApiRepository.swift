@@ -29,7 +29,9 @@ class PokeCardRepository {
         let (data, _) = try await URLSession.shared.data(for: request)
         let decodedData = try JSONDecoder().decode(PokeCardData.self, from: data)
 
-        return decodedData.data
+        return decodedData.data.filter {
+            $0.cardmarket != nil
+        }
     }
 
     func searchPokeCards(searchQuery: String?) async throws -> [PokeCard] {
@@ -47,7 +49,9 @@ class PokeCardRepository {
         let (data, _) = try await URLSession.shared.data(from: url)
         let decodedResponse = try JSONDecoder().decode(PokeCardData.self, from: data)
 
-        return decodedResponse.data
+        return decodedResponse.data.filter {
+            $0.cardmarket != nil
+        }
     }
 }
 

@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct PokeCardSearchView: View {
+struct PokeCardSearch: View {
+
     @EnvironmentObject var viewModel: PokeCardViewModel
 
     var body: some View {
@@ -23,34 +24,44 @@ struct PokeCardSearchView: View {
                     }
 
                 List(viewModel.cards) { card in
-
+                    NavigationLink(destination: PokeCardDetailView(card: card)) {
                         HStack {
-                            AsyncImage(url: URL(string: card.images.small)) { image in
+                            AsyncImage(url: URL(string: card.images?.small ?? "")) { image in
                                 image.resizable().scaledToFit()
                             } placeholder: {
                                 ProgressView()
                             }
-                            .frame(width: 100, height: 100)
+                            .frame(width: 120, height: 120)
 
                             VStack(alignment: .leading) {
-                                Text(card.name)
+                                Text(card.name ?? "")
                                     .font(.headline)
                                 Text("HP: \(card.hp ?? "")")
                                     .font(.subheadline)
                                     .foregroundColor(.gray)
+                            }
+                            Spacer()
 
+                            Text("\(card.formattedPrice)")
                         }
                     }
+                    .padding(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.black, lineWidth: 1)
+
+                    )
                 }
-            }
-            .navigationTitle("Pokemon Karten")
-            .task {
-                await viewModel.fetchCards()
+                .navigationTitle("Pokemon Karten")
+                .task {
+                    await viewModel.fetchCards()
+
+                }
             }
         }
     }
 }
 #Preview {
-    PokeCardSearchView()
+    PokeCardSearch()
         .environmentObject(PokeCardViewModel())
 }
