@@ -8,9 +8,9 @@
 import Foundation
 import FirebaseFirestore
 
-struct FirestorePokeCard: Identifiable, Codable {
+struct FavoritePokeCard: Identifiable, Codable {
     @DocumentID var id: String?
-    
+
     let userId: FireUser.ID
     let name: String
     let hp: String

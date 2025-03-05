@@ -7,21 +7,51 @@
 
 import FirebaseFirestore
 
+class FavoriteRepository {
 
-class FireStoreRepository {
-    
     private let collection = Firestore.firestore().collection("favorite")
-    
-    func insertFavorite(name: String, hp: String, types: [String], image: String, price: String) {
+
+    func insertFavorite(name: String, hp: String, types: [String], image: String, price: String) async {
         guard let userId = FirebaseManager.shared.userId else { return }
-        
-        let favoriteCard = FirestorePokeCard(userId: userId, name: name , hp: hp, types: types, image: image, price: price, isFavorite: true )
-        
+
+        let favoriteCard = FavoritePokeCard(
+            userId: userId,
+            name: name,
+            hp: hp,
+            types: types,
+            image: image,
+            price: price,
+            isFavorite: true )
+
         do {
             try collection.addDocument(from: favoriteCard)
-        }catch{
+        } catch {
             print(error.localizedDescription)
         }
     }
 
+    func findAllFavoriteCards() async -> [FavoritePokeCard] {
+        guard let userId = FirebaseManager.shared.userId else { return [] }
+
+        do {
+            let querySnapshot = try await collection
+                .whereField("userId", isEqualTo: userId)
+                .getDocuments()
+
+            let favoriteCards = querySnapshot.documents.compactMap { document in
+                try? document.data(as: FavoritePokeCard.self)
+            }
+            return favoriteCards
+        } catch {
+            print("Fehler beim Abrufen der favorisierten Karten: \(error.localizedDescription)")
+            return []
+        }
+    }
+    func deleteFavoriteCard(by id: String) async {
+        do {
+            try await collection.document(id).delete()
+        } catch {
+            print("Fehler beim Entfernen aus der Favoritenliste: \(error.localizedDescription)")
+        }
+    }
 }

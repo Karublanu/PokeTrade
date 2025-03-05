@@ -13,7 +13,7 @@ class UserViewModel: ObservableObject {
 
     private var auth = Auth.auth()
 
-    @Published var user: FirebaseAuth.User?
+    @Published private var user: FirebaseAuth.User?
 
     @Published var fireUser: FireUser?
 
@@ -70,7 +70,7 @@ class UserViewModel: ObservableObject {
         let user = FireUser(
             id: userID,
             email: email,
-            registeredOn: registeredOn,
+            registeredOn: Date(),
             name: name
 
         )

@@ -8,25 +8,32 @@ import SwiftUI
 
 struct NaviView: View {
 
-    var body: some View {
+    @EnvironmentObject private var userViewModel: UserViewModel
+    @StateObject var pokeCardViewModel = PokeCardViewModel()
+    @StateObject var favoriteViewModel = FavoriteViewModel()
 
-        @StateObject var userViewModel = UserViewModel()
-        @StateObject var pokeCardViewModel = PokeCardViewModel()
+    var body: some View {
 
         TabView {
             Home()
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
-            PokeCardSearchView()
+            PokeCardSearch()
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
+            Favorite()
+                .tabItem {
+                    Label("Favorite", systemImage: "heart")
+                }
         }
-        .environmentObject(UserViewModel())
-        .environmentObject(PokeCardViewModel())
+        .environmentObject(userViewModel)
+        .environmentObject(pokeCardViewModel)
+        .environmentObject(favoriteViewModel)
     }
 }
 #Preview {
     NaviView()
+        .environmentObject(UserViewModel())
 }

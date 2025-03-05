@@ -13,29 +13,33 @@ struct PokeCardData: Decodable {
 
 struct PokeCard: Identifiable, Decodable {
     let id: String
-    let name: String
+    let name: String?
     let hp: String?
     let types: [String]
-    let images: CardImages
-    let tcgplayer: TCGPlayerInfo?
+    let images: CardImages?
+    let cardmarket: Cardmarket?
 
 }
 
 struct CardImages: Decodable {
-    let small: String
-    let large: String
+    let small: String?
+    let large: String?
 }
 
-struct TCGPlayerInfo: Decodable {
-    let url: String
-    let updatedAt: String
-    let prices: Prices
+struct Cardmarket: Decodable {
+    let url: String?
+    let updatedAt: String?
+    let prices: Prices?
 }
 
 struct Prices: Decodable {
-    let low: Double
-    let mid: Double
-    let high: Double
-    let market: Double
-    let directLow: Double
+    let averageSellPrice: Double
+}
+extension PokeCard {
+    var formattedPrice: String {
+        if let averageSellPrice = cardmarket?.prices?.averageSellPrice {
+            return String(format: "%.2f", averageSellPrice) + " €"
+        }
+        return "Unbekannt"
+    }
 }

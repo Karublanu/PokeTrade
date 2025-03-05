@@ -13,18 +13,10 @@ class FirebaseManager {
 
     static let shared = FirebaseManager()
 
-    let auth: Auth
-    let database: Firestore
+    let auth: Auth = Auth.auth()
+    let database: Firestore = Firestore.firestore()
 
     var userId: String? {
         return auth.currentUser?.uid
-    }
-
-    private init() {
-        if FirebaseApp.app() == nil {
-            FirebaseApp.configure()
-        }
-        self.auth = Auth.auth()
-        self.database = Firestore.firestore()
     }
 }

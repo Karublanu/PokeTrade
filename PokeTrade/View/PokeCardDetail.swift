@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct PokeCardDetailView: View {
-
-    let card: PokeCard
+    @State private var isFavorite = false
     @EnvironmentObject var viewModel: FavoriteViewModel
+    let card: PokeCard
 
     var body: some View {
         VStack {
@@ -19,11 +19,31 @@ struct PokeCardDetailView: View {
             } placeholder: {
                 ProgressView()
             }
-            .frame(height: 300)
+            .frame(width: 400, height: 450)
 
-            Text(card.name ?? "")
-                .font(.largeTitle)
-                .padding()
+            HStack {
+                Text(card.name ?? "")
+                    .font(.largeTitle)
+                    .padding()
+
+                Button(action: {
+                    isFavorite.toggle()
+                    if isFavorite {
+                        viewModel.addFavorite(
+                            name: card.name ?? "",
+                            hp: card.hp ?? "",
+                            types: card.types,
+                            image: card.images?.large ?? "",
+                            price: card.formattedPrice
+                        )
+                    }
+                }) {
+                    Image(systemName: isFavorite ? "heart.fill" : "heart")
+                        .foregroundColor(isFavorite ? .red : .gray)
+                        .font(.system(size: 32))
+                }
+            }
+            .padding(.horizontal)
 
             Text("HP: \(card.hp ?? "Unbekannt")")
                 .font(.title2)
@@ -33,16 +53,6 @@ struct PokeCardDetailView: View {
 
             Spacer()
         }
-        Button("Add Favorite") {
-            viewModel.addFavorite(
-                name: card.name ?? "",
-                hp: card.hp ?? "",
-                types: card.types,
-                image: card.images?.large ?? "",
-                price: card.formattedPrice
-            )
-        }
-        .buttonStyle(.borderedProminent)
         .padding()
         .navigationTitle(card.name ?? "")
     }
@@ -53,8 +63,7 @@ struct PokeCardDetailView: View {
         name: "Pikachu",
         hp: "60",
         types: ["Electric"],
-        images: CardImages(small: nil,
-                           large: "https://images.pokemontcg.io/base1/58.png"),
+        images: CardImages(small: nil, large: "https://images.pokemontcg.io/base1/58.png"),
         cardmarket: nil)
     ).environmentObject(FavoriteViewModel())
 }

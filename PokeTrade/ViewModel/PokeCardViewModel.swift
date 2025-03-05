@@ -16,13 +16,13 @@ class PokeCardViewModel: ObservableObject {
 
     private let repository = PokeCardRepository()
 
-    var filteredCards: [PokeCard] {
-        if searchText.isEmpty {
-            return cards
-        } else {
-            return cards.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-        }
-    }
+//    var filteredCards: [PokeCard] {
+//        if searchText.isEmpty {
+//            return cards
+//        } else {
+//            return cards.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+//        }
+//    }
 
     func fetchCardss() async {
         do {

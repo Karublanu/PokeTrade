@@ -10,6 +10,7 @@ import SwiftUI
 struct PokeCardSearch: View {
 
     @EnvironmentObject var viewModel: PokeCardViewModel
+    @EnvironmentObject var favoriteViewModel: FavoriteViewModel
 
     var body: some View {
         NavigationStack {
@@ -24,7 +25,7 @@ struct PokeCardSearch: View {
                     }
 
                 List(viewModel.cards) { card in
-                    NavigationLink(destination: PokeCardDetailView(card: card)) {
+                    NavigationLink(destination: PokeCardDetailView(card: card).environmentObject(favoriteViewModel)) {
                         HStack {
                             AsyncImage(url: URL(string: card.images?.small ?? "")) { image in
                                 image.resizable().scaledToFit()
@@ -64,4 +65,5 @@ struct PokeCardSearch: View {
 #Preview {
     PokeCardSearch()
         .environmentObject(PokeCardViewModel())
+        .environmentObject(FavoriteViewModel())
 }
