@@ -12,10 +12,10 @@ struct FavoritePokeCard: Identifiable, Codable {
     @DocumentID var id: String?
 
     let userId: FireUser.ID
+    let cardId: String
     let name: String
     let hp: String
     let types: [String]
     let image: String
     let price: String
-    let isFavorite: Bool
 }

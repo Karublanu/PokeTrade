@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct PokeCardData: Decodable {
+struct PokeCardData: Codable {
     let data: [PokeCard]
 }
 
-struct PokeCard: Identifiable, Decodable {
+struct PokeCard: Identifiable, Codable {
     let id: String
     let name: String?
     let hp: String?
@@ -21,20 +21,21 @@ struct PokeCard: Identifiable, Decodable {
 
 }
 
-struct CardImages: Decodable {
+struct CardImages: Codable {
     let small: String?
     let large: String?
 }
 
-struct Cardmarket: Decodable {
+struct Cardmarket: Codable {
     let url: String?
     let updatedAt: String?
     let prices: Prices?
 }
 
-struct Prices: Decodable {
+struct Prices: Codable {
     let averageSellPrice: Double
 }
+
 extension PokeCard {
     var formattedPrice: String {
         if let averageSellPrice = cardmarket?.prices?.averageSellPrice {

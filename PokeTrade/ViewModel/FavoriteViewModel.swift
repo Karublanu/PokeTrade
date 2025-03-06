@@ -12,9 +12,10 @@ class FavoriteViewModel: ObservableObject {
     @Published var favorites: [FavoritePokeCard] = []
     private var favoriteRepo = FavoriteRepository()
 
-    func addFavorite(name: String, hp: String, types: [String], image: String, price: String) {
+    func addFavorite(name: String, hp: String, types: [String], image: String, price: String, cardId: String) {
         Task {
-            await favoriteRepo.insertFavorite(name: name, hp: hp, types: types, image: image, price: price)
+            await favoriteRepo.insertFavorite(name: name, cardId: cardId, hp: hp, types: types, image: image, price: price)
+            await loadFavorites()
         }
     }
 

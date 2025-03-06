@@ -34,7 +34,6 @@ struct Favorite: View {
                         }
                         .padding(.vertical, 8)
                     }
-
                 }
                 .onDelete { indexSet in
                     for index in indexSet {
@@ -52,7 +51,7 @@ struct Favorite: View {
     }
 }
 
- #Preview {
+#Preview {
     Favorite()
         .environmentObject(FavoriteViewModel())
- }
+}

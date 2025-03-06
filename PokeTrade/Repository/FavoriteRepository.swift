@@ -11,17 +11,10 @@ class FavoriteRepository {
 
     private let collection = Firestore.firestore().collection("favorite")
 
-    func insertFavorite(name: String, hp: String, types: [String], image: String, price: String) async {
+    func insertFavorite(name: String, cardId: String, hp: String, types: [String], image: String, price: String) async {
         guard let userId = FirebaseManager.shared.userId else { return }
 
-        let favoriteCard = FavoritePokeCard(
-            userId: userId,
-            name: name,
-            hp: hp,
-            types: types,
-            image: image,
-            price: price,
-            isFavorite: true )
+        let favoriteCard = FavoritePokeCard(userId: userId, cardId: cardId, name: name, hp: hp, types: types, image: image, price: price)
 
         do {
             try collection.addDocument(from: favoriteCard)

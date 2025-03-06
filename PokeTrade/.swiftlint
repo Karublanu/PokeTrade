@@ -1,0 +1,7 @@
+# .swiftlint.yml
+
+identifier_name:
+  min_length: 2
+  max_length: 40
+  excluded: ["hp", "id", "xp"] 
+

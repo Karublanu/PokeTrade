@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PokeCardDetailView: View {
-    @State private var isFavorite = false
+
     @EnvironmentObject var viewModel: FavoriteViewModel
     let card: PokeCard
 
@@ -26,22 +26,21 @@ struct PokeCardDetailView: View {
                     .font(.largeTitle)
                     .padding()
 
-                Button(action: {
-                    isFavorite.toggle()
-                    if isFavorite {
-                        viewModel.addFavorite(
-                            name: card.name ?? "",
-                            hp: card.hp ?? "",
-                            types: card.types,
-                            image: card.images?.large ?? "",
-                            price: card.formattedPrice
-                        )
-                    }
-                }) {
-                    Image(systemName: isFavorite ? "heart.fill" : "heart")
-                        .foregroundColor(isFavorite ? .red : .gray)
+                Button {
+                    viewModel.addFavorite(
+                        name: card.name ?? "",
+                        hp: card.hp ?? "",
+                        types: card.types,
+                        image: card.images?.large ?? "",
+                        price: card.formattedPrice,
+                        cardId: card.id
+                    )
+                } label: {
+                    Image(systemName: "heart")
+                        .foregroundColor(.gray)
                         .font(.system(size: 32))
                 }
+
             }
             .padding(.horizontal)
 
@@ -50,6 +49,8 @@ struct PokeCardDetailView: View {
                 .foregroundColor(.gray)
 
             Text("Price: \(card.formattedPrice)")
+
+            Text("Typen: \(card.types.joined(separator: ", "))")
 
             Spacer()
         }
