@@ -34,15 +34,11 @@ class UserViewModel: ObservableObject {
         }
     }
 
-    func signIn(email: String, password: String) async {
-        do {
+    func signIn(email: String, password: String) async throws {
             let result = try await auth.signIn(withEmail: email, password: password)
             user = result.user
             errorMessage = nil
             fetchUser(userID: result.user.uid)
-        } catch {
-            errorMessage = error.localizedDescription
-        }
     }
 
     func signUp(email: String, password: String, registeredOn: Date, name: String) async {

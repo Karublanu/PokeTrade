@@ -9,12 +9,8 @@ import SwiftUI
 
 struct Home: View {
 
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-
     @EnvironmentObject private var userViewModel: UserViewModel
+    @EnvironmentObject private var inventoryViewModel: InventoryViewModel
 
     var body: some View {
         NavigationStack {
@@ -23,48 +19,42 @@ struct Home: View {
                     Section {
                         if let fireUser = userViewModel.fireUser {
                             Text("Hallo \(fireUser.name)")
+                                .bold()
                             Text("Email: \(fireUser.email ?? "" )")
+                                .bold()
                         }
                     }
+                    .listRowBackground(Color.clear)
 
                     Section("Current value") {
-                        Text("0,00")
+                        Text("\(String(format: "%.2f", inventoryViewModel.totalValue)) €")
                             .font(.title)
-                        Text("Karten 0")
+                            .bold()
+                        Text("Karten: \(inventoryViewModel.cardCount)")
+                            .bold()
                     }
+                    .listRowBackground(Color.clear)
 
-                    LazyVGrid(columns: columns, spacing: 20) {
-                        VStack {
-                            Text("Decks")
-                                .font(.headline)
-                                .frame(maxWidth: .infinity, maxHeight: 20)
-                                .padding()
-                                .background(Color.blue.opacity(0.1))
-                                .cornerRadius(10)
-                                .shadow(color: .blue, radius: 5, x: 0, y: 3)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.blue, lineWidth: 2)
-                                )
-                        }
-
-                        VStack {
-                            Text("Inventory")
-                                .font(.headline)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.green.opacity(0.2))
-                                .cornerRadius(10)
-                                .shadow(color: .green, radius: 5, x: 0, y: 3)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.green, lineWidth: 2)
-                                )
-                        }
+                    VStack {
+                        Text("Decks")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .padding()
+                            .background(Color.blue.opacity(0.1))
+                            .cornerRadius(10)
+                            .shadow(color: .blue, radius: 5, x: 0, y: 3)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.blue, lineWidth: 2)
+                            )
                     }
                     .padding()
+                    .listRowBackground(Color.clear)
+
                 }
+                .scrollContentBackground(.hidden)
             }
+
             .navigationTitle("Home")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -75,11 +65,14 @@ struct Home: View {
                     })
                 }
             }
+            .withBackground()
             Spacer()
         }
     }
 }
+
 #Preview {
     Home()
         .environmentObject(UserViewModel())
+        .environmentObject(InventoryViewModel())
 }

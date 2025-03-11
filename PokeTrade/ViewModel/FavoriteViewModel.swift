@@ -9,28 +9,53 @@ import SwiftUI
 @MainActor
 class FavoriteViewModel: ObservableObject {
 
-    @Published var favorites: [FavoritePokeCard] = []
-    private var favoriteRepo = FavoriteRepository()
+    @Published var favoriteCards: [FavoriteCard] = []
+    @Published var isSelected: Bool = false
+    private let repository = FavoriteRepository()
 
-    func addFavorite(name: String, hp: String, types: [String], image: String, price: String, cardId: String) {
+    init() {
         Task {
-            await favoriteRepo.insertFavorite(name: name, cardId: cardId, hp: hp, types: types, image: image, price: price)
             await loadFavorites()
         }
     }
 
+    func toggleSelected() {
+        isSelected.toggle()
+    }
+
     func loadFavorites() async {
-        Task {
-            let fetchedFavorites = await favoriteRepo.findAllFavoriteCards()
+        let favorites = await repository.findAllFavoriteCards()
+        DispatchQueue.main.async {
+            self.favoriteCards = favorites
+        }
+    }
+
+    func isFavorite(cardId: String) -> Bool {
+        return favoriteCards.contains { $0.cardId == cardId }
+    }
+
+    func toggleFavorite(card: PokeCard) async {
+        if let favorite = favoriteCards.first(where: { $0.cardId == card.id }) {
+            await repository.deleteFavoriteCard(by: favorite.id ?? "")
             DispatchQueue.main.async {
-                self.favorites = fetchedFavorites
+                self.favoriteCards.removeAll { $0.cardId == card.id }
             }
+        } else {
+            await repository.insertFavorite(
+                name: card.name ?? "",
+                cardId: card.id,
+                hp: card.hp ?? "",
+                types: card.types,
+                image: card.images?.large ?? "",
+                price: card.formattedPrice
+            )
+            await loadFavorites()
         }
     }
 
     func deledeFavorite(id: String) {
         Task {
-            await favoriteRepo.deleteFavoriteCard(by: id)
+            await repository.deleteFavoriteCard(by: id)
             await loadFavorites()
         }
     }

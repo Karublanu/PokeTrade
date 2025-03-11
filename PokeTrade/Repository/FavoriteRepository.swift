@@ -14,7 +14,7 @@ class FavoriteRepository {
     func insertFavorite(name: String, cardId: String, hp: String, types: [String], image: String, price: String) async {
         guard let userId = FirebaseManager.shared.userId else { return }
 
-        let favoriteCard = FavoritePokeCard(userId: userId, cardId: cardId, name: name, hp: hp, types: types, image: image, price: price)
+        let favoriteCard = FavoriteCard(userId: userId, cardId: cardId, name: name, hp: hp, types: types, image: image, price: price)
 
         do {
             try collection.addDocument(from: favoriteCard)
@@ -23,7 +23,7 @@ class FavoriteRepository {
         }
     }
 
-    func findAllFavoriteCards() async -> [FavoritePokeCard] {
+    func findAllFavoriteCards() async -> [FavoriteCard] {
         guard let userId = FirebaseManager.shared.userId else { return [] }
 
         do {
@@ -32,7 +32,7 @@ class FavoriteRepository {
                 .getDocuments()
 
             let favoriteCards = querySnapshot.documents.compactMap { document in
-                try? document.data(as: FavoritePokeCard.self)
+                try? document.data(as: FavoriteCard.self)
             }
             return favoriteCards
         } catch {

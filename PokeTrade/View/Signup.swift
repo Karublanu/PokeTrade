@@ -19,46 +19,56 @@ struct Signup: View {
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
-
         NavigationStack {
-            NavigationStack {
-                ZStack {
-                    Image("Glurak")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(maxWidth: 200, maxHeight: 200)
-                        .ignoresSafeArea()
-                }
+            ZStack {
+                // 🔥 Hintergrundbild für den ganzen Screen
+                Image("pikapika") // Stelle sicher, dass das Bild im Asset-Katalog existiert!
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+
+                VStack {
+                    Spacer()
+
+                    Text("Erstelle ein Konto")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.black)
+                        .padding(.bottom, 20)
+
                     TextField("Email", text: $email)
                         .frame(width: 300, height: 50)
-                        .background(Color.black.opacity(0.05))
+                        .background(Color.white.opacity(0.8))
                         .cornerRadius(10)
                         .multilineTextAlignment(.center)
+                        .foregroundColor(.black)
+
                     HStack {
                         if isPasswordVisible {
                             TextField("Password", text: $password)
+                                .foregroundColor(.black)
                         } else {
                             SecureField("Password", text: $password)
+                                .foregroundColor(.black)
                         }
                         Button {
                             isPasswordVisible.toggle()
                         } label: {
                             Image(systemName: isPasswordVisible ? "eye.slash" : "eye")
-                                .foregroundColor(.gray)
+                                .foregroundColor(.black)
                         }
                     }
                     .frame(width: 300, height: 50)
-                    .background(Color.black.opacity(0.05))
+                    .background(Color.white.opacity(0.8))
                     .cornerRadius(10)
                     .multilineTextAlignment(.center)
-                }
 
-                Section("Personal Information") {
                     TextField("Name", text: $name)
                         .frame(width: 300, height: 50)
-                        .background(Color.black.opacity(0.05))
+                        .background(Color.white.opacity(0.8))
                         .cornerRadius(10)
                         .multilineTextAlignment(.center)
+                        .foregroundColor(.black)
 
                     Button("Sign Up") {
                         Task {
@@ -72,8 +82,8 @@ struct Signup: View {
                     }
                     .frame(maxWidth: 270)
                     .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
+                    .background(Color.yellow)
+                    .foregroundColor(.black)
                     .cornerRadius(10)
 
                     Button("Cancel") {
@@ -81,20 +91,20 @@ struct Signup: View {
                     }
                     .frame(maxWidth: 270)
                     .padding()
-                    .background(Color.blue)
+                    .background(Color.red)
                     .foregroundColor(.white)
                     .cornerRadius(10)
 
-                    .navigationTitle("Signup")
+                    Spacer()
                 }
-
+                .padding()
             }
-            .padding()
-
+            .navigationTitle("Signup")
         }
     }
+}
 
-    #Preview{
-        Signup()
-            .environmentObject(UserViewModel())
-    }
+#Preview {
+    Signup()
+        .environmentObject(UserViewModel())
+}

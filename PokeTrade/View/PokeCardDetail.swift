@@ -1,15 +1,9 @@
-//
-//  PokeCardDetailView.swift
-//  PokeTrade
-//
-//  Created by Mehmet Burak Ünal on 27.02.25.
-//
-
 import SwiftUI
 
 struct PokeCardDetailView: View {
 
-    @EnvironmentObject var viewModel: FavoriteViewModel
+    @EnvironmentObject var viewModelFavorite: FavoriteViewModel
+    @EnvironmentObject var viewModelInventory: InventoryViewModel
     let card: PokeCard
 
     var body: some View {
@@ -27,17 +21,12 @@ struct PokeCardDetailView: View {
                     .padding()
 
                 Button {
-                    viewModel.addFavorite(
-                        name: card.name ?? "",
-                        hp: card.hp ?? "",
-                        types: card.types,
-                        image: card.images?.large ?? "",
-                        price: card.formattedPrice,
-                        cardId: card.id
-                    )
+                    Task {
+                        await viewModelFavorite.toggleFavorite(card: card)
+                    }
                 } label: {
-                    Image(systemName: "heart")
-                        .foregroundColor(.gray)
+                    Image(systemName: viewModelFavorite.isFavorite(cardId: card.id) ? "heart.fill" : "heart")
+                        .foregroundColor(viewModelFavorite.isFavorite(cardId: card.id) ? .red : .gray)
                         .font(.system(size: 32))
                 }
 
@@ -46,16 +35,29 @@ struct PokeCardDetailView: View {
 
             Text("HP: \(card.hp ?? "Unbekannt")")
                 .font(.title2)
-                .foregroundColor(.gray)
+                .foregroundColor(.black)
+                .bold()
 
             Text("Price: \(card.formattedPrice)")
+                .foregroundColor(.black)
+                .bold()
 
             Text("Typen: \(card.types.joined(separator: ", "))")
+                .foregroundColor(.black)
+                .bold()
+
+            Button {
+                Task {
+                    await viewModelInventory.addInventoryCard(card: card)
+                }
+            } label: {
+                Text("In Inventory hinzufügen")
+            }
+            .buttonStyle(.borderedProminent)
 
             Spacer()
         }
         .padding()
-        .navigationTitle(card.name ?? "")
     }
 }
 #Preview {

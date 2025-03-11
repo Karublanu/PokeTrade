@@ -11,6 +11,7 @@ struct PokeCardSearch: View {
 
     @EnvironmentObject var viewModel: PokeCardViewModel
     @EnvironmentObject var favoriteViewModel: FavoriteViewModel
+    @EnvironmentObject var inventoryViewModel: InventoryViewModel
 
     var body: some View {
         NavigationStack {
@@ -24,46 +25,71 @@ struct PokeCardSearch: View {
                         }
                     }
 
-                List(viewModel.cards) { card in
-                    NavigationLink(destination: PokeCardDetailView(card: card).environmentObject(favoriteViewModel)) {
-                        HStack {
-                            AsyncImage(url: URL(string: card.images?.small ?? "")) { image in
-                                image.resizable().scaledToFit()
-                            } placeholder: {
-                                ProgressView()
-                            }
-                            .frame(width: 120, height: 120)
+                if viewModel.isLoading {
+                    ZStack {
+                        Image("Enton")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 300, height: 300)
+                            // .opacity(1)
 
-                            VStack(alignment: .leading) {
-                                Text(card.name ?? "")
-                                    .font(.headline)
-                                Text("HP: \(card.hp ?? "")")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                            }
-                            Spacer()
-
-                            Text("\(card.formattedPrice)")
-                        }
+                        ProgressView()
+                            .scaleEffect(1.5, anchor: .center)
                     }
-                    .padding(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.black, lineWidth: 1)
+                    .padding()
+                } else {
+                    List(viewModel.cards) { card in
+                        NavigationLink(
+                            destination: PokeCardDetailView(card: card)
+                                .environmentObject(favoriteViewModel)
+                                .environmentObject(inventoryViewModel)
+                        ) {
+                            HStack {
+                                AsyncImage(url: URL(string: card.images?.small ?? "")) { image in
+                                    image.resizable().scaledToFit()
+                                } placeholder: {
+                                    ProgressView()
+                                        .scaleEffect(1.5, anchor: .center)
+                                }
+                                .frame(width: 120, height: 120)
 
-                    )
-                }
-                .navigationTitle("Pokemon Karten")
-                .task {
-                    await viewModel.fetchCards()
+                                VStack(alignment: .leading) {
+                                    Text(card.name ?? "")
+                                        .font(.headline)
+                                    Text("HP: \(card.hp ?? "")")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                        .bold()
+                                }
+                                Spacer()
 
+                                Text("\(card.formattedPrice)")
+                            }
+                        }
+                        .padding(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.black, lineWidth: 0.3)
+                        )
+                        .listRowBackground(Color.black.opacity(0.0))
+                    }
+                    .navigationTitle("Pokemon Karten")
                 }
             }
+            .task {
+                if viewModel.cards.isEmpty {
+                    await viewModel.fetchCards()
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .withBackground()
         }
     }
 }
+
 #Preview {
     PokeCardSearch()
         .environmentObject(PokeCardViewModel())
         .environmentObject(FavoriteViewModel())
+        .environmentObject(InventoryViewModel())
 }
