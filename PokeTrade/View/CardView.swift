@@ -31,21 +31,22 @@ struct CardView: View {
             VStack {
                 Text(inventory.name)
                     .font(.headline)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .bold()
                 Spacer()
                 Text(String(format: "%.2f", inventory.price) + " €")
                     .font(.subheadline)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .bold()
             }
+            .padding()
         }
         .padding(.top, 15)
-        .background(Color.black.opacity(0.5)) // Hintergrund für die Karte
-        .cornerRadius(10) // Abgerundete Ecken
+        .background(Color.gray.opacity(0.3))
+        .cornerRadius(10)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.black, lineWidth: 1) // Rand um die Karte
+                .stroke(Color.black, lineWidth: 0.5)
         )
         .contextMenu {
             Button(action: onDelete) {

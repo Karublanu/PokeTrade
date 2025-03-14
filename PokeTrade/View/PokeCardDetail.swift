@@ -12,6 +12,8 @@ struct PokeCardDetailView: View {
     @EnvironmentObject var viewModelInventory: InventoryViewModel
     @EnvironmentObject var viewModelDecks: DeckViewModel
     @State private var selectedDeckId: String?
+    @State private var showInventoryAlert = false
+    @State private var showDeckAlert = false
 
     let card: PokeCard
 
@@ -55,9 +57,8 @@ struct PokeCardDetailView: View {
                     .foregroundColor(.black)
                     .bold()
 
-                // Dropdown-Menü für Decks
                 Picker("Deck auswählen", selection: $selectedDeckId) {
-                    Text("Kein Deck ausgewählt").tag(String?.none) // Standardoption
+                    Text("Kein Deck ausgewählt").tag(String?.none)
                     ForEach(viewModelDecks.decks) { deck in
                         Text(deck.name).tag(deck.id as String?)
                     }
@@ -69,29 +70,41 @@ struct PokeCardDetailView: View {
                     Task {
                         if let deckId = selectedDeckId {
                             await viewModelDecks.addCardToDeck(deckId: deckId, card: card)
+                            showDeckAlert = true
                         }
                     }
                 } label: {
                     Text("In Deck hinzufügen")
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(selectedDeckId == nil) // Deaktivieren, wenn kein Deck ausgewählt ist
+                .disabled(selectedDeckId == nil)
 
                 Button {
                     Task {
                         await viewModelInventory.addInventoryCard(card: card)
+                        showInventoryAlert = true
                     }
                 } label: {
                     Text("In Inventory hinzufügen")
                 }
                 .buttonStyle(.borderedProminent)
+                .alert("Erfolgreich", isPresented: $showInventoryAlert) {
+                    Button("OK", role: .cancel) {}
+                } message: {
+                    Text("Die Karte wurde dem Inventar hinzugefügt.")
+                }
+                .alert("Erfolgreich", isPresented: $showDeckAlert) {
+                    Button("OK", role: .cancel) {}
+                } message: {
+                    Text("Die Karte wurde dem Deck hinzugefügt.")
+                }
 
                 Spacer()
             }
             .padding()
             .withBackground()
             .task {
-                await viewModelDecks.loadDecks() // Lade die Decks beim Erscheinen der View
+                await viewModelDecks.loadDecks()
             }
         }
     }

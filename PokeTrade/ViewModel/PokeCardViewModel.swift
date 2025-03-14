@@ -16,13 +16,14 @@ class PokeCardViewModel: ObservableObject {
 
     private let repository = PokeCardRepository()
 
-//    var filteredCards: [PokeCard] {
-//        if searchText.isEmpty {
-//            return cards
-//        } else {
-//            return cards.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-//        }
-//    }
+    func getSortedCards(descending: Bool) -> [PokeCard] {
+        let sortedCards = cards.sorted {
+            let price1 = $0.cardmarket?.prices?.averageSellPrice ?? 0
+            let price2 = $1.cardmarket?.prices?.averageSellPrice ?? 0
+            return descending ? price1 > price2 : price1 < price2
+        }
+        return sortedCards
+    }
 
     func fetchCardss() async {
         do {
@@ -44,6 +45,19 @@ class PokeCardViewModel: ObservableObject {
         }
 
         isLoading = false
+    }
+
+    let imageLinks: [(imageName: String, url: String)] = [
+        (imageName: "booster1", url: "https://www.tcg-trade.de/p/paldeas-schicksale-booster-deutsch"),
+        (imageName: "booster2", url: "https://www.tcg-trade.de/p/pokemon-trick-or-trade-booster-englisch"),
+        (imageName: "booster3", url: "https://www.tcg-trade.de/p/karmesin-und-purpur-obsidianflammen-booster-deutsch"),
+        (imageName: "booster4", url: "https://www.tcg-trade.de/p/pokemon-go-booster-deutsch")
+    ]
+
+    func openURL(urlString: String) {
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url)
+        }
     }
 
 }

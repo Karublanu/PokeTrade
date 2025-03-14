@@ -4,3 +4,5 @@ identifier_name:
   max_length: 40
   excluded: ["hp", "id", "xp"] 
 
+line_length:
+  disabled: true

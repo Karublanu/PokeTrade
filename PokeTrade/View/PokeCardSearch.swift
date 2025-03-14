@@ -53,34 +53,34 @@ struct PokeCardSearch: View {
                                 } placeholder: {
                                     ProgressView()
                                         .scaleEffect(1.5, anchor: .center)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(.black)
                                 }
                                 .frame(width: 120, height: 120)
 
                                 VStack(alignment: .leading) {
                                     Text(card.name ?? "")
                                         .font(.headline)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(.black)
                                     Text("HP: \(card.hp ?? "")")
                                         .font(.subheadline)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(.black)
                                         .bold()
                                 }
                                 Spacer()
 
                                 Text("\(card.formattedPrice)")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.black)
 
                             }
                         }
                         .padding(10)
-                        .background(Color.black.opacity(0.5)) // Hintergrund für jede Karte
-                                            .cornerRadius(8) // Abgerundete Ecken
-                                            .listRowBackground(Color.clear)
-                                            .listRowSeparator(.hidden)  // Trennlinien ausblenden
+                        .background(Color.gray.opacity(0.4))
+                        .cornerRadius(8)
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.black, lineWidth: 1)
+                                .stroke(Color.black, lineWidth: 0.5)
 
                         )
                     }
