@@ -12,50 +12,35 @@ struct Inventory: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible())
     ]
 
-//    @EnvironmentObject var pokeCardViewModel: PokeCardViewModel
-//    @EnvironmentObject var favoriteViewModel: FavoriteViewModel
-    @EnvironmentObject var inventoryViewModel: InventoryViewModel
+    @EnvironmentObject var viewModel: InventoryViewModel
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(inventoryViewModel.inventoryCard) { inventory in
-                        VStack {
-                            AsyncImage(url: URL(string: inventory.image)!) { image in
-                                image.resizable().scaledToFit()
-                            }placeholder: {
-                                Image("pokeback")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 200, height: 200)
-                                    .cornerRadius(10)
-                                ProgressView()
-                            }
-                            .frame(width: 200, height: 200)
-
-                            VStack {
-                                Text(inventory.name)
-                                    .font(.headline)
-                                    .bold()
-                                Spacer()
-                                Text(String(format: "%.2f", inventory.price) + " €")
-                                    .font(.subheadline)
-                                    .bold()
-
+                    ForEach(viewModel.inventoryCard) { inventory in
+                        CardView(inventory: inventory) {
+                            if let id = inventory.id {
+                                viewModel.deleteInventory(id: id)
                             }
                         }
                     }
+//                    .background(Color.black.opacity(0.5))
+//                    .cornerRadius(8)
+//                    .listRowBackground(Color.clear)
+//                    .listRowSeparator(.hidden)
                 }
+
             }
             .padding(.horizontal)
             .navigationTitle("Inventory")
             .task {
-                await inventoryViewModel.loadInventory()
+                await viewModel.loadInventory()
             }
             .withBackground()
 
         }
+
     }
 }
 #Preview {

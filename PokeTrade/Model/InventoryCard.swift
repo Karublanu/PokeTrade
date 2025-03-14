@@ -8,11 +8,11 @@
 import Foundation
 import FirebaseFirestore
 
-struct InventoryCard: Identifiable, Codable {
+struct InventoryCard: Identifiable, Codable, Hashable {
     @DocumentID var id: String?
 
     let userId: FireUser.ID
-    let cardId: String
+    let cardId: PokeCard.ID
     let name: String
     let image: String
     let price: Double

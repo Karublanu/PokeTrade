@@ -45,4 +45,5 @@ class PokeCardViewModel: ObservableObject {
 
         isLoading = false
     }
+
 }

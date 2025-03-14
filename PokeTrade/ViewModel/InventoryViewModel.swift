@@ -48,4 +48,26 @@ class InventoryViewModel: ObservableObject {
         }
     }
 
+    private func getBackgroundColor(for card: PokeCard) -> Color {
+        guard let firstType = card.types.first else { return Color.gray.opacity(0.2) }
+
+        switch firstType {
+        case "Fire":
+            return Color.red.opacity(0.3)
+        case "Water":
+            return Color.blue.opacity(0.3)
+        case "Grass":
+            return Color.green.opacity(0.3)
+        case "Electric":
+            return Color.yellow.opacity(0.3)
+        case "Psychic":
+            return Color.purple.opacity(0.3)
+        case "Fighting":
+            return Color.orange.opacity(0.3)
+        case "Dark":
+            return Color.black.opacity(0.3)
+        default:
+            return Color.gray.opacity(0.2)
+        }
+    }
 }

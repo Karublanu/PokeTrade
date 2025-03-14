@@ -12,6 +12,8 @@ struct PokeCardSearch: View {
     @EnvironmentObject var viewModel: PokeCardViewModel
     @EnvironmentObject var favoriteViewModel: FavoriteViewModel
     @EnvironmentObject var inventoryViewModel: InventoryViewModel
+    @EnvironmentObject var deckViewModel: DeckViewModel
+    @EnvironmentObject var viewModelPokeCard: PokeCardViewModel
 
     var body: some View {
         NavigationStack {
@@ -31,10 +33,11 @@ struct PokeCardSearch: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 300, height: 300)
-                            // .opacity(1)
+                            .opacity(8)
 
                         ProgressView()
                             .scaleEffect(1.5, anchor: .center)
+                            .foregroundColor(.white)
                     }
                     .padding()
                 } else {
@@ -50,29 +53,38 @@ struct PokeCardSearch: View {
                                 } placeholder: {
                                     ProgressView()
                                         .scaleEffect(1.5, anchor: .center)
+                                        .foregroundColor(.white)
                                 }
                                 .frame(width: 120, height: 120)
 
                                 VStack(alignment: .leading) {
                                     Text(card.name ?? "")
                                         .font(.headline)
+                                        .foregroundColor(.white)
                                     Text("HP: \(card.hp ?? "")")
                                         .font(.subheadline)
-                                        .foregroundColor(.gray)
+                                        .foregroundColor(.white)
                                         .bold()
                                 }
                                 Spacer()
 
                                 Text("\(card.formattedPrice)")
+                                    .foregroundColor(.white)
+
                             }
                         }
                         .padding(10)
+                        .background(Color.black.opacity(0.5)) // Hintergrund für jede Karte
+                                            .cornerRadius(8) // Abgerundete Ecken
+                                            .listRowBackground(Color.clear)
+                                            .listRowSeparator(.hidden)  // Trennlinien ausblenden
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.black, lineWidth: 0.3)
+                                .stroke(Color.black, lineWidth: 1)
+
                         )
-                        .listRowBackground(Color.black.opacity(0.0))
                     }
+
                     .navigationTitle("Pokemon Karten")
                 }
             }
@@ -92,4 +104,5 @@ struct PokeCardSearch: View {
         .environmentObject(PokeCardViewModel())
         .environmentObject(FavoriteViewModel())
         .environmentObject(InventoryViewModel())
+        .environmentObject(DeckViewModel())
 }

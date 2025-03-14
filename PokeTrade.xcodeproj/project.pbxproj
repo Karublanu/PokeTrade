@@ -72,7 +72,7 @@
 				670C2DB12D5B7ED300660C8B /* Sources */,
 				670C2DB22D5B7ED300660C8B /* Frameworks */,
 				670C2DB32D5B7ED300660C8B /* Resources */,
-				670C2DE72D5E155100660C8B /* ShellScript */,
+				670C2DE72D5E155100660C8B /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -143,7 +143,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		670C2DE72D5E155100660C8B /* ShellScript */ = {
+		670C2DE72D5E155100660C8B /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -152,6 +152,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run SwiftLint";
 			outputFileListPaths = (
 			);
 			outputPaths = (

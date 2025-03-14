@@ -8,46 +8,68 @@
 import SwiftUI
 
 struct DeckView: View {
+
+    let columns = [GridItem(.flexible()), GridItem(.flexible())
+    ]
+
     @EnvironmentObject var viewModel: DeckViewModel
+    @State private var showingCreateDeckAlert = false
+    @State private var newDeckName = ""
 
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
+                LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(viewModel.decks) { deck in
-                        VStack {
-                            AsyncImage(url: URL(string: deck.image)) { image in
-                                image.resizable().scaledToFit()
-                            } placeholder: {
-                                ProgressView()
+                        NavigationLink {
+                            DeckDetailView(deck: deck)
+                        } label: {
+                            VStack {
+                                Text(deck.name)
+                                    .font(.headline)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.blue.opacity(0.2))
+                                    .cornerRadius(10)
                             }
-                            .frame(width: 100, height: 100)
-
-                            Text(deck.name)
-                                .font(.headline)
-                            Text("\(deck.price, specifier: "%.2f") €")
-                                .font(.subheadline)
                         }
                         .contextMenu {
                             Button(role: .destructive) {
-                                viewModel.deleteDeck(id: deck.id ?? "")
+                                Task {
+                                    await viewModel.deleteDeck(deckId: deck.id ?? "")
+                                }
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
                         }
-                        .padding()
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(10)
                     }
                 }
                 .padding()
             }
+
             .navigationTitle("Decks")
+            .toolbar {
+                Button {
+                    showingCreateDeckAlert = true
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+            .alert("Create Deck", isPresented: $showingCreateDeckAlert) {
+                TextField("Deck Name", text: $newDeckName)
+                Button("Create") {
+                    Task {
+                        await viewModel.createDeck(name: newDeckName)
+                        newDeckName = ""
+                    }
+                }
+                Button("Cancel", role: .cancel) {}
+            }
             .task {
                 await viewModel.loadDecks()
             }
+            .withBackground()
         }
-        .withBackground()
     }
 }
 

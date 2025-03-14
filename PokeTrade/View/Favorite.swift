@@ -41,12 +41,11 @@ struct Favorite: View {
                                     Text("Price: \(favoriteCard.price)")
                                         .font(.subheadline)
                                         .bold()
-
                                 }
                             }
                             .contextMenu {
                                 Button {
-//                                    viewModel.deledeFavorite(id: favorite.id)
+                                    viewModel.deledeFavorite(id: favoriteCard.id ?? "")
                                 } label: {
                                     Text("Delete")
                                 }

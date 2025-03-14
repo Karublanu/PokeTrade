@@ -11,6 +11,7 @@ struct NaviView: View {
     @StateObject var pokeCardViewModel = PokeCardViewModel()
     @StateObject var favoriteViewModel = FavoriteViewModel()
     @StateObject var inventoryViewModel = InventoryViewModel()
+    @StateObject var deckViewModel = DeckViewModel()
 
     var body: some View {
         TabView {
@@ -40,6 +41,7 @@ struct NaviView: View {
         .environmentObject(pokeCardViewModel)
         .environmentObject(favoriteViewModel)
         .environmentObject(inventoryViewModel)
+        .environmentObject(deckViewModel)
 
 //        .onAppear {
 //            // TabBar-Erscheinungsbild anpassen
