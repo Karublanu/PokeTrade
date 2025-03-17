@@ -26,7 +26,6 @@ Die App nutzt die [**Pokémon TCG API**](https://dev.pokemontcg.io/dashboard), u
 - **Sammlung verwalten → Füge und filtere deine Pokémon-Karten**
 - **Tauschbörse → Tausche Karten mit anderen Nutzern**
 - **Wertübersicht → Sieh den aktuellen Marktwert deiner Karten**
-- **"Katen Scannen → Karten scannen und speichern**
   
   ## 📸 **Screenshots**
 *(Hier kannst du Screenshots deiner App einfügen.)*
