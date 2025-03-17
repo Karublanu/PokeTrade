@@ -46,15 +46,12 @@ struct PokeCardDetailView: View {
 
                 Text("HP: \(card.hp ?? "Unbekannt")")
                     .font(.title2)
-                    .foregroundColor(.black)
                     .bold()
 
                 Text("Price: \(card.formattedPrice)")
-                    .foregroundColor(.black)
                     .bold()
 
                 Text("Typen: \(card.types.joined(separator: ", "))")
-                    .foregroundColor(.black)
                     .bold()
 
                 Picker("Deck auswählen", selection: $selectedDeckId) {

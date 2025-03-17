@@ -51,25 +51,25 @@ struct PokeCardSearch: View {
                                 AsyncImage(url: URL(string: card.images?.small ?? "")) { image in
                                     image.resizable().scaledToFit()
                                 } placeholder: {
+
                                     ProgressView()
                                         .scaleEffect(1.5, anchor: .center)
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.white)
+
                                 }
                                 .frame(width: 120, height: 120)
 
                                 VStack(alignment: .leading) {
                                     Text(card.name ?? "")
                                         .font(.headline)
-                                        .foregroundColor(.black)
                                     Text("HP: \(card.hp ?? "")")
                                         .font(.subheadline)
-                                        .foregroundColor(.black)
                                         .bold()
                                 }
                                 Spacer()
 
                                 Text("\(card.formattedPrice)")
-                                    .foregroundColor(.black)
+                                    .bold()
 
                             }
                         }

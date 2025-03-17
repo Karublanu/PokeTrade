@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct DeckDetailView: View {
-    let columns = [GridItem(.flexible()), GridItem(.flexible())
-    ]
+
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
+
+    @EnvironmentObject var viewModel: DeckViewModel
     let deck: Deck
 
     var body: some View {
@@ -32,15 +34,21 @@ struct DeckDetailView: View {
                             ProgressView()
                         }
                         .frame(width: 250, height: 250)
+
+                        .contextMenu {
+                            Button(role: .destructive) {
+                                Task {
+                                    await viewModel.deleteCardFromDeck(deckId: deck.id ?? "", card: card)
+                                }
+                            } label: {
+                                Label("Löschen", systemImage: "trash")
+                            }
+                        }
                     }
                 }
             }
             .padding(8)
-//            .contextMenu {
-//                Button(action: onDelete) {
-//                    Label("Delete", systemImage: "trash")
-//                }
-//            }
+
         }
 
         .withBackground()

@@ -12,6 +12,7 @@ class PokeCardViewModel: ObservableObject {
     @Published var cards: [PokeCard] = []
     @Published var searchText: String = ""
     @Published var isLoading: Bool = false
+
     @Published var errorMessage: String?
 
     private let repository = PokeCardRepository()
@@ -26,13 +27,21 @@ class PokeCardViewModel: ObservableObject {
     }
 
     func fetchCardss() async {
-        do {
-            self.cards = try await repository.searchPokeCards(searchQuery: searchText)
-        } catch {
-            print("Fehler beim Laden der Karten: \(error.localizedDescription)")
-        }
-    }
+        isLoading = true
+        errorMessage = nil
 
+        do {
+            let fetchedCards = try await PokeCardRepository().searchPokeCards(searchQuery: searchText)
+            if fetchedCards.isEmpty {
+                errorMessage = "Kein Pokémon mit diesem Namen gefunden."
+            }
+            self.cards = fetchedCards
+        } catch {
+            errorMessage = "Fehler beim Laden der Karten: \(error.localizedDescription)"
+        }
+
+        isLoading = false
+    }
     func fetchCards() async {
         isLoading = true
         errorMessage = nil

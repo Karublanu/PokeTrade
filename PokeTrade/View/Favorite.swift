@@ -28,21 +28,28 @@ struct Favorite: View {
                                         .scaledToFit()
                                         .frame(width: 120, height: 120)
                                         .cornerRadius(10)
+                                        .padding(.top, 15)
                                     ProgressView()
                                 }
                                 .frame(width: 120, height: 120)
 
                                 VStack(alignment: .leading) {
                                     Text(favoriteCard.name)
-                                        .font(.headline)
+                                        .font(.subheadline)
+                                        .bold()
                                     Text("HP: \(favoriteCard.hp)")
                                         .font(.subheadline)
-                                        .bold()
                                     Text("Price: \(favoriteCard.price)")
                                         .font(.subheadline)
-                                        .bold()
                                 }
                             }
+                            .padding(.top, 15)
+                            .background(Color.gray.opacity(0.3))
+                            .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.black, lineWidth: 0.5)
+                            )
                             .contextMenu {
                                 Button {
                                     viewModel.deledeFavorite(id: favoriteCard.id ?? "")

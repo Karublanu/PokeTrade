@@ -46,4 +46,9 @@ class DeckViewModel: ObservableObject {
         await repository.deleteDeck(deckId: deckId)
         await loadDecks()
     }
+
+    func deleteCardFromDeck(deckId: String, card: DeckCard) async {
+        await repository.deleteCardFromDeck(deckId: deckId, card: card)
+        await loadDecks()
+    }
 }

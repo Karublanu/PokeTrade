@@ -31,12 +31,10 @@ struct CardView: View {
             VStack {
                 Text(inventory.name)
                     .font(.headline)
-                    .foregroundColor(.black)
                     .bold()
                 Spacer()
                 Text(String(format: "%.2f", inventory.price) + " €")
                     .font(.subheadline)
-                    .foregroundColor(.black)
                     .bold()
             }
             .padding()

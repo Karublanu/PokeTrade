@@ -63,4 +63,15 @@ class DeckRepository {
             print("Fehler beim Löschen des Decks: \(error.localizedDescription)")
         }
     }
+
+    func deleteCardFromDeck(deckId: String, card: DeckCard) async {
+        do {
+            let deckRef = decksCollection.document(deckId)
+            try await deckRef.updateData([
+                "cards": FieldValue.arrayRemove([try Firestore.Encoder().encode(card)])
+            ])
+        } catch {
+            print("Fehler beim Löschen der Karte aus dem Deck: \(error.localizedDescription)")
+        }
+    }
 }

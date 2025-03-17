@@ -25,10 +25,6 @@ struct Inventory: View {
                             }
                         }
                     }
-//                    .background(Color.black.opacity(0.5))
-//                    .cornerRadius(8)
-//                    .listRowBackground(Color.clear)
-//                    .listRowSeparator(.hidden)
                 }
 
             }
