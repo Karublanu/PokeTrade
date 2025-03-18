@@ -41,6 +41,7 @@ struct Favorite: View {
                                         .font(.subheadline)
                                     Text("Price: \(favoriteCard.price)")
                                         .font(.subheadline)
+                                        .padding(.vertical, 8)
                                 }
                             }
                             .padding(.top, 15)

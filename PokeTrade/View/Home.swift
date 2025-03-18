@@ -104,7 +104,6 @@ struct Home: View {
                             HStack {
                                 ForEach(pokeCardViewModel.imageLinks, id: \.imageName) { link in
                                     Button(action: {
-                                        // Öffne die URL beim Klicken auf das Bild
                                         pokeCardViewModel.openURL(urlString: link.url)
                                     }) {
                                         Image(link.imageName)
@@ -122,15 +121,6 @@ struct Home: View {
                 .scrollContentBackground(.hidden)
             }
             .navigationTitle("Home")
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button(action: {
-//                        userViewModel.signOut()
-//                    }, label: {
-//                        Text("Abmelden")
-//                    })
-//                }
-//            }
             .withBackground()
             .task {
                 await pokeCardViewModel.fetchCards()

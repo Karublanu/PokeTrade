@@ -12,6 +12,7 @@ struct SettingsView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     @AppStorage("isDarkMode") private var isDarkMode = false
     @AppStorage("notifications") var notifications: Bool = false
+    @AppStorage("language") private var language: String = "Deutsch"
 
     var body: some View {
         NavigationStack {
@@ -38,6 +39,11 @@ struct SettingsView: View {
                 Section(header: Text("App")) {
                     Section(header: Text("Notifications").bold()) {
                         Toggle(("Notifications"), isOn: $notifications)
+                        Picker("Language", selection: $language) {
+                            Text("English").tag("English")
+                            Text("Deutsch").tag("Deutsch")
+                            Text("Español").tag("Español")
+                        }
                     }
                 }
                 .listRowBackground(Color.gray.opacity(0.4))
