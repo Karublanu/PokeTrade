@@ -15,3 +15,4 @@ struct DeckCard: Identifiable, Codable, Hashable {
     let image: String
     let price: Double
 }
+
